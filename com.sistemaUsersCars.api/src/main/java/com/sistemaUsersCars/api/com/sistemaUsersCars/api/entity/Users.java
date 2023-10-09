@@ -1,5 +1,6 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity;
 
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosCadasUsuario;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,5 +26,15 @@ public class Users {
     private Cars cars;
 
 
+    public Users(DadosCadasUsuario dados) {
+        this.firstName = dados.firstName();
+        this.lastName = dados.lastName();
+        this.email = dados.email();
+        this.birthday = dados.birthday();
+        this.login = dados.login();
+        this.password = dados.password();
+        this.phone = dados.phone();
+        this.cars = dados.cars();
 
+    }
 }
