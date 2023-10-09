@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: io.micrometer:micrometer-observation:1.12.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/micrometer/micrometer-observation/1.12.0-SNAPSHOT/micrometer-observation-1.12.0-20231009.111245-126.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/io/micrometer/micrometer-observation/1.12.0-SNAPSHOT/micrometer-observation-1.12.0-20231009.111245-126-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/micrometer/micrometer-observation/1.12.0-SNAPSHOT/micrometer-observation-1.12.0-20231009.111245-126-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
