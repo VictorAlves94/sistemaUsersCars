@@ -1,5 +1,6 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity;
 
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosAtualizacaoUsuario;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosCadasUsuario;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,6 +36,35 @@ public class Users {
         this.password = dados.password();
         this.phone = dados.phone();
         this.cars = dados.cars();
+
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoUsuario dados) {
+
+        if(dados.firstName() != null) {
+            this.firstName = dados.firstName();
+        }
+        if(dados.lastName() != null) {
+            this.lastName = dados.lastName();
+        }
+        if(dados.email() != null) {
+            this.email = dados.email();
+        }
+        if(dados.birthday() != null) {
+            this.birthday = dados.birthday();
+        }
+        if(dados.login() != null) {
+            this.login = dados.login();
+        }
+        if(dados.password() != null) {
+            this.password = dados.password();
+        }
+        if(dados.phone() != null) {
+            this.phone = dados.phone();
+        }
+      if(dados.cars() != null){
+          this.cars.atualizarInformarcoes(dados.cars());
+      }
 
     }
 }

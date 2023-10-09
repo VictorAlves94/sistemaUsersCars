@@ -5,15 +5,15 @@ import com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity.Users;
 
 import java.util.Date;
 
-public record DadosDetalhamentoUsers(String firstName ,
+public record DadosDetalhamentoUsers(Long id,
+                                     String firstName ,
                                      String lastName,
                                      String email,
                                      Date birthday ,
                                      String login,
-                                     String password,
                                      String phone ,
                                      Cars cars) {
     public DadosDetalhamentoUsers(Users usuario){
-       this(usuario.getFirstName(), usuario.getLastName(), usuario.getEmail(), usuario.getBirthday(), usuario.getLogin(), usuario.getPassword(), usuario.getPhone(), usuario.getCars());
+       this(usuario.getId(), usuario.getFirstName(), usuario.getLastName(), usuario.getEmail(), usuario.getBirthday(), usuario.getLogin(), usuario.getPhone(), usuario.getCars());
         }
 }
