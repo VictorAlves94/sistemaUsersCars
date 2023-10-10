@@ -17,14 +17,14 @@ public class Cars {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private Users users;
-    private Integer year;
+    private Users usuario;
+    private Integer yearCar;
     private String lincenseCar;
     private String model;
     private String color;
 
     public Cars (DadosCarro dados){
-        this.year = dados.year();
+        this.yearCar = dados.yearCar();
         this.lincenseCar = dados.LincenseCar();
         this.model = dados.model();
         this.color = dados.Color();
@@ -40,8 +40,8 @@ public class Cars {
         if (this.color != null){
             this.color = dados.color;
         }
-        if (this.year != null){
-            this.year = dados.year;
+        if (this.yearCar != null){
+            this.yearCar = dados.yearCar;
         }
 
     }

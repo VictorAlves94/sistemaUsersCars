@@ -7,6 +7,7 @@ import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosDetalhamentoUs
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosListagemUsers;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity.Users;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.repository.UsersRepository;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.service.UsuarioService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,13 +22,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class UsersController {
 
     @Autowired
-    UsersRepository usersRepository;
+    UsuarioService usuarioService;
 
     @PostMapping
     @Transactional
     public ResponseEntity cadastrarUsuario (@RequestBody DadosCadasUsuario dados, UriComponentsBuilder uriBuilder) {
-        var user = new Users(dados);
-        Users usuarioSalvo = usersRepository.save(user);
+        Users usuarioSalvo = usuarioService.;
 
         var uri = uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoUsers(usuarioSalvo));
@@ -35,7 +35,7 @@ public class UsersController {
 
     @GetMapping
     public ResponseEntity<Page<DadosListagemUsers>> listar(@PageableDefault(size=10, sort={"nome"}) Pageable paginacao){
-        var page = usersRepository.findAll(paginacao).map(DadosListagemUsers::new);
+        var page = usuarioService.listarTodos(paginacao);
         return ResponseEntity.ok(page);
     }
     @GetMapping("/{id}")
@@ -54,8 +54,7 @@ public class UsersController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity excluir(@PathVariable Long id){
-        var usuario = usersRepository.getReferenceById(id);
-        usuario.excluir();
+        usuarioService.desativarUsuario(id);
         return ResponseEntity.noContent().build();
     }
 
