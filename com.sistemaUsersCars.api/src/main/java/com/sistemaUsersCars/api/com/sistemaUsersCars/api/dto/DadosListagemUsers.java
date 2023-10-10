@@ -14,6 +14,6 @@ public record DadosListagemUsers(Long id,
                                  String phone ,
                                  Cars cars){
     public DadosListagemUsers(Users usuario){
-        this(usuario.getId(), usuario.getFirstName(), usuario.getLastName(), usuario.getEmail(), usuario.getBirthday(), usuario.getLogin(), usuario.getPhone(), usuario.getCars());
+        this(usuario.getId(), usuario.getFirstName(), usuario.getLastName(), usuario.getEmail(), usuario.getBirthday(), usuario.getLogin(), usuario.getPhone(), (Cars) usuario.getCars());
     }
 }

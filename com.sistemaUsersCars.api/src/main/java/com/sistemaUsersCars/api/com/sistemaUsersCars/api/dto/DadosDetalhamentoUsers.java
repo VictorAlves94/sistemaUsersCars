@@ -14,6 +14,6 @@ public record DadosDetalhamentoUsers(Long id,
                                      String phone ,
                                      Cars cars) {
     public DadosDetalhamentoUsers(Users usuario){
-       this(usuario.getId(), usuario.getFirstName(), usuario.getLastName(), usuario.getEmail(), usuario.getBirthday(), usuario.getLogin(), usuario.getPhone(), usuario.getCars());
+       this(usuario.getId(), usuario.getFirstName(), usuario.getLastName(), usuario.getEmail(), usuario.getBirthday(), usuario.getLogin(), usuario.getPhone(), (Cars) usuario.getCars());
         }
 }

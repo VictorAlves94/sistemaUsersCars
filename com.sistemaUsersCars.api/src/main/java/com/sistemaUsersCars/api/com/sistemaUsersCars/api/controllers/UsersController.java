@@ -51,6 +51,13 @@ public class UsersController {
         usuario.atualizarInformacoes(dados);
         return ResponseEntity.ok(new DadosDetalhamentoUsers(usuario));
     }
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity excluir(@PathVariable Long id){
+        var usuario = usersRepository.getReferenceById(id);
+        usuario.excluir();
+        return ResponseEntity.noContent().build();
+    }
 
 
     }

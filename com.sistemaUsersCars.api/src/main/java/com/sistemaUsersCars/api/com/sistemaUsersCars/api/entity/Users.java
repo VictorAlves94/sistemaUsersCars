@@ -6,8 +6,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,8 +25,10 @@ public class Users {
     private String login;
     private String password;
     private String phone;
-   @Embedded
-    private Cars cars;
+   @OneToMany(mappedBy = "usuario")
+    private List<Cars> cars;
+
+   private Boolean ativo = true;
 
 
     public Users(DadosCadasUsuario dados) {
@@ -35,7 +39,7 @@ public class Users {
         this.login = dados.login();
         this.password = dados.password();
         this.phone = dados.phone();
-        this.cars = dados.cars();
+        this.cars = (List<Cars>) dados.cars();
 
     }
 
@@ -63,8 +67,13 @@ public class Users {
             this.phone = dados.phone();
         }
       if(dados.cars() != null){
-          this.cars.atualizarInformarcoes(dados.cars());
+          this.cars = (List<Cars>) dados.cars();
       }
+
+    }
+
+    public void excluir() {
+        this.ativo = false;
 
     }
 }

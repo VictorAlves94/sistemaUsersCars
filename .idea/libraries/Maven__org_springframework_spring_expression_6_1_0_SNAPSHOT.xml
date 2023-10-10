@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework:spring-expression:6.1.0-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/6.1.0-SNAPSHOT/spring-expression-6.1.0-20231008.163624-688.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/6.1.0-SNAPSHOT/spring-expression-6.1.0-20231010.150754-696.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/6.1.0-SNAPSHOT/spring-expression-6.1.0-20231008.163624-688-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/6.1.0-SNAPSHOT/spring-expression-6.1.0-20231010.150754-696-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/6.1.0-SNAPSHOT/spring-expression-6.1.0-20231008.163624-688-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-expression/6.1.0-SNAPSHOT/spring-expression-6.1.0-20231010.150754-696-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

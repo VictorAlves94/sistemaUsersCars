@@ -1,18 +1,23 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity;
 
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosCarro;
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Embeddable
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cars {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Users users;
     private Integer year;
     private String lincenseCar;
     private String model;
