@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework:spring-jdbc:6.1.0-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/6.1.0-SNAPSHOT/spring-jdbc-6.1.0-20231010.150754-696.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/6.1.0-SNAPSHOT/spring-jdbc-6.1.0-20231011.114342-708.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/6.1.0-SNAPSHOT/spring-jdbc-6.1.0-20231010.150754-696-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/6.1.0-SNAPSHOT/spring-jdbc-6.1.0-20231011.114342-708-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/6.1.0-SNAPSHOT/spring-jdbc-6.1.0-20231010.150754-696-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/6.1.0-SNAPSHOT/spring-jdbc-6.1.0-20231011.114342-708-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

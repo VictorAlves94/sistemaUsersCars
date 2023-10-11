@@ -27,10 +27,12 @@ public class UsersController {
     @PostMapping
     @Transactional
     public ResponseEntity cadastrarUsuario (@RequestBody DadosCadasUsuario dados, UriComponentsBuilder uriBuilder) {
-        Users usuarioSalvo = usuarioService.;
+        var usuario = cadastrarUsuario()
+
+         ;
 
         var uri = uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
-        return ResponseEntity.created(uri).body(new DadosDetalhamentoUsers(usuarioSalvo));
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoUsers(cadastrarUsuario()));
     }
 
     @GetMapping
@@ -40,16 +42,15 @@ public class UsersController {
     }
     @GetMapping("/{id}")
     public ResponseEntity buscarPorId(@PathVariable Long id){
-        var usuario = usersRepository.getReferenceById(id);
-        return ResponseEntity.ok(new DadosDetalhamentoUsers(usuario));
+        var usuario = usuarioService.buscarUsuario(id);
+        return ResponseEntity.ok(usuario);
 
     }
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody DadosAtualizacaoUsuario dados){
-        var usuario = usersRepository.getReferenceById(dados.id());
-        usuario.atualizarInformacoes(dados);
-        return ResponseEntity.ok(new DadosDetalhamentoUsers(usuario));
+    public ResponseEntity atualizar(Long id ,@RequestBody DadosAtualizacaoUsuario dados) {
+    var usuario = usuarioService.atualizacaoUsuario(id, dados);
+    return ResponseEntity.ok(usuario);
     }
     @DeleteMapping("/{id}")
     @Transactional
