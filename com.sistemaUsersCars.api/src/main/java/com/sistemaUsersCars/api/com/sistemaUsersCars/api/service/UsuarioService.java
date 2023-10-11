@@ -8,7 +8,6 @@ import com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity.Users;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.repository.UsersRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -59,11 +58,19 @@ public class UsuarioService {
                usuario.getEmail(),
                usuario.getBirthday(),
                usuario.getLogin(),
-               usuario.getPhone(),
-               usuario.getCars()
+               usuario.getPhone()
+               , usuario.getCars()
        );
        return  dados;
 
+    }
+    public DadosDetalhamentoUsers cadastrarUsuario(DadosCadasUsuario dadosCadastroUsuario){
+
+        Users usuarioCadastro = converterCadastroEntidade(dadosCadastroUsuario);
+        var usuarioCadastrado = usuarioRepository.save(usuarioCadastro);
+        var usuarioDevolver = converterUsersParaDadosDetalharUsuario(usuarioCadastrado);
+
+        return usuarioDevolver;
     }
 
     public DadosAtualizacaoUsuario atualizacaoUsuario(Long id, DadosAtualizacaoUsuario dadosAtualizacaoUsuario){
@@ -86,17 +93,25 @@ public class UsuarioService {
         );
         return dadosAtualizacaoUsuario;
     }
+    private DadosDetalhamentoUsers converterUsersParaDadosDetalharUsuario(Users usuarioCadastrado) {
+        DadosDetalhamentoUsers usuario = new DadosDetalhamentoUsers(usuarioCadastrado.getId(),usuarioCadastrado.getFirstName(), usuarioCadastrado.getLastName(),
+                usuarioCadastrado.getEmail(),usuarioCadastrado.getBirthday(),usuarioCadastrado.getLogin(), usuarioCadastrado.getPhone(),
+                usuarioCadastrado.getCars()
+        );
+
+        return usuario;
+    }
 
     private static Users converterDadosAtualizacaoUsers(DadosAtualizacaoUsuario dadosAtualizacaoUsuario) {
         Users usuario = new Users();
-        usuario.setFirstName(dadosAtualizacaoUsuario.getFirstName());
-        usuario.setLastName(dadosAtualizacaoUsuario.getLastName());
-        usuario.setEmail(dadosAtualizacaoUsuario.getEmail());
-        usuario.setBirthday(dadosAtualizacaoUsuario.getBirthday());
-        usuario.setLogin(dadosAtualizacaoUsuario.getLogin());
-        usuario.setPassword(dadosAtualizacaoUsuario.getPassword());
-        usuario.setPhone(dadosAtualizacaoUsuario.getPhone());
-        usuario.setCars(dadosAtualizacaoUsuario.getCars());
+        usuario.setFirstName(dadosAtualizacaoUsuario.firstName());
+        usuario.setLastName(dadosAtualizacaoUsuario.lastName());
+        usuario.setEmail(dadosAtualizacaoUsuario.email());
+        usuario.setBirthday(dadosAtualizacaoUsuario.birthday());
+        usuario.setLogin(dadosAtualizacaoUsuario.login());
+        usuario.setPassword(dadosAtualizacaoUsuario.password());
+        usuario.setPhone(dadosAtualizacaoUsuario.phone());
+        usuario.setCars(dadosAtualizacaoUsuario.cars());
         return usuario;
     }
 
@@ -106,15 +121,16 @@ public class UsuarioService {
         return usuarioRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Usuario não encontrado."));
     }
 
-    private Users converterCadastroEntidade(DadosCadasUsuario  cadasUsuario){
+
+    private Users converterCadastroEntidade(DadosCadasUsuario  cadastroUsuario){
         Users users = new Users();
-        users.setFirstName(cadasUsuario.getFirstName());
-        users.setLastName(cadasUsuario.getLastName());
-        users.setEmail(cadasUsuario.getEmail());
-        users.setBirthday(cadasUsuario.getBirthday());
-        users.setLogin(cadasUsuario.getLogin());
-        users.setPassword(cadasUsuario.getPassword());
-        users.setPhone(cadasUsuario.getPhone());
+        users.setFirstName(cadastroUsuario.firstName());
+        users.setLastName(cadastroUsuario.lastName());
+        users.setEmail(cadastroUsuario.email());
+        users.setBirthday(cadastroUsuario.birthday());
+        users.setLogin(cadastroUsuario.login());
+        users.setPassword(cadastroUsuario.password());
+        users.setPhone(cadastroUsuario.phone());
         return users;
     }
 

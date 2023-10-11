@@ -3,10 +3,7 @@ package com.sistemaUsersCars.api.com.sistemaUsersCars.api.controllers;
 
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosAtualizacaoUsuario;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosCadasUsuario;
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosDetalhamentoUsers;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosListagemUsers;
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity.Users;
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.repository.UsersRepository;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.service.UsuarioService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/users")
@@ -27,12 +27,12 @@ public class UsersController {
     @PostMapping
     @Transactional
     public ResponseEntity cadastrarUsuario (@RequestBody DadosCadasUsuario dados, UriComponentsBuilder uriBuilder) {
-        var usuario = cadastrarUsuario()
+        var usuarioCadastrado = usuarioService.cadastrarUsuario(dados);
 
-         ;
+        UriComponents uriComponents = uriBuilder.path("/user/{id}").buildAndExpand(usuarioCadastrado.id());
+        URI uri = uriComponents.toUri();
 
-        var uri = uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();
-        return ResponseEntity.created(uri).body(new DadosDetalhamentoUsers(cadastrarUsuario()));
+        return ResponseEntity.created(uri).body(usuarioCadastrado);
     }
 
     @GetMapping

@@ -1,20 +1,51 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto;
 
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity.Cars;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
-@NoArgsConstructor
-@Data
-@AllArgsConstructor
-public record DadosAtualizacaoUsuario(@NotBlank String firstName , @NotBlank String lastName,@NotBlank String email,@NotBlank Date birthday ,@NotBlank String login,@NotBlank String password,@NotBlank String phone,
-                                      @NotBlank List<Cars> cars) {
 
+
+public record DadosAtualizacaoUsuario( String firstName , String lastName, String email, Date birthday , String login, String password, String phone,
+                                       List<Cars> cars) {
+    @Override
+    public String firstName() {
+        return firstName;
+    }
+
+    @Override
+    public String lastName() {
+        return lastName;
+    }
+
+    @Override
+    public String email() {
+        return email;
+    }
+
+    @Override
+    public Date birthday() {
+        return birthday;
+    }
+
+    @Override
+    public String login() {
+        return login;
+    }
+
+    @Override
+    public String password() {
+        return password;
+    }
+
+    @Override
+    public String phone() {
+        return phone;
+    }
+
+    @Override
+    public List<Cars> cars() {
+        return cars;
+    }
 }
