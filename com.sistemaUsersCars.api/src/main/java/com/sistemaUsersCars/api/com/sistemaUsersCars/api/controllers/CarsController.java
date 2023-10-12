@@ -1,5 +1,6 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.controllers;
 
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.DadosCarroAtualizar;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.DadosCarroCadastro;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.DadosListarCarro;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.service.CarsService;
@@ -39,9 +40,23 @@ public class CarsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity buscarPorId(@PathVariable Long id){
+    public ResponseEntity buscarCarroPorId(@PathVariable Long id){
         var carro = carsService.buscarPorId(id);
         return ResponseEntity.ok(carro);
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizarCarro (Long id , @RequestBody DadosCarroAtualizar dados){
+        var carro = carsService.atualizarCarro(id, dados);
+
+        return ResponseEntity.ok(carro);
+    }
+
+    @DeleteMapping
+    public ResponseEntity excluirCarro(@PathVariable Long id){
+        carsService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 
 

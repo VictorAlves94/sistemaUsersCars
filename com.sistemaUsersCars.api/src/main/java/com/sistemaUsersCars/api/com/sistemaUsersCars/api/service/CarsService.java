@@ -1,10 +1,12 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.service;
 
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.CarroDetalhamento;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.DadosCarroAtualizar;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.DadosCarroCadastro;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.DadosListarCarro;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity.Cars;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.repository.CarsRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -50,6 +52,36 @@ public class CarsService {
 
         return dados;
     }
+    public DadosCarroAtualizar atualizarCarro(Long id ,DadosCarroAtualizar dadosCarroAtualizar) {
+        Cars carroNovo = converterDtoCarroAtualizarEmEntidade(dadosCarroAtualizar);
+        var carroAntigo = carsRepository.getById(id);
+
+        BeanUtils.copyProperties(carroNovo,carroAntigo);
+        var carroAtualizado = carsRepository.save(carroAntigo);
+        var devolverCarroAtt = converderCarroAttParaDto(carroAtualizado);
+        return devolverCarroAtt;
+    }
+    public void deletar(Long id) {
+        var carro = carsRepository.getById(id);
+        carsRepository.delete(carro);
+    }
+
+    private DadosCarroAtualizar converderCarroAttParaDto(Cars carroAtualizado) {
+        DadosCarroAtualizar dadosCarroAtualizar = new DadosCarroAtualizar(
+                carroAtualizado.getId(), carroAtualizado.getYearCar(), carroAtualizado.getLincenseCar(),
+                carroAtualizado.getColor(), carroAtualizado.getModel()
+        );
+        return dadosCarroAtualizar;
+    }
+
+    private Cars converterDtoCarroAtualizarEmEntidade(DadosCarroAtualizar dadosCarroAtualizar) {
+        Cars carro = new Cars();
+        carro.setYearCar(dadosCarroAtualizar.yearCar());
+        carro.setLincenseCar(dadosCarroAtualizar.LincenseCar());
+        carro.setColor(dadosCarroAtualizar.Color());
+        carro.setModel(dadosCarroAtualizar.model());
+       return carro;
+    }
 
 
     private CarroDetalhamento converderEntidadeEmDto(Cars carroCadastrado) {
@@ -68,6 +100,7 @@ public class CarsService {
         carro.setColor(dados.Color());
         return carro;
     }
+
 
 
 }
