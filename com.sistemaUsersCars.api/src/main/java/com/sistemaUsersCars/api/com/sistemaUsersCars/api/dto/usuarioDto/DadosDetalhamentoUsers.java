@@ -1,4 +1,4 @@
-package com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto;
+package com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto;
 
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity.Cars;
 import lombok.*;

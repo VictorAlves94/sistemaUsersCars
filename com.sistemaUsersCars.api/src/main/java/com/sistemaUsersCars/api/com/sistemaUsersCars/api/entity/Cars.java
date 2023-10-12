@@ -1,6 +1,5 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity;
 
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosCarro;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,26 +22,4 @@ public class Cars {
     private String model;
     private String color;
 
-    public Cars (DadosCarro dados){
-        this.yearCar = dados.yearCar();
-        this.lincenseCar = dados.LincenseCar();
-        this.model = dados.model();
-        this.color = dados.Color();
-
-    }
-    public void atualizarInformarcoes(Cars dados) {
-        if(this.lincenseCar != null){
-            this.lincenseCar = dados.lincenseCar;
-        }
-        if(this.model != null){
-            this.model = dados.model;
-        }
-        if (this.color != null){
-            this.color = dados.color;
-        }
-        if (this.yearCar != null){
-            this.yearCar = dados.yearCar;
-        }
-
-    }
 }

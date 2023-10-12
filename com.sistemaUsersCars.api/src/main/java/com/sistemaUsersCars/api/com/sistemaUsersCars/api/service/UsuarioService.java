@@ -1,9 +1,9 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.service;
 
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosAtualizacaoUsuario;
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosCadasUsuario;
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosDetalhamentoUsers;
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosListagemUsers;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosAtualizacaoUsuario;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosCadasUsuario;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosDetalhamentoUsers;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosListagemUsers;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity.Users;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.repository.UsersRepository;
 import org.springframework.beans.BeanUtils;
@@ -93,7 +93,7 @@ public class UsuarioService {
         );
         return dadosAtualizacaoUsuario;
     }
-    private DadosDetalhamentoUsers converterUsersParaDadosDetalharUsuario(Users usuarioCadastrado) {
+    private DadosDetalhamentoUsers  converterUsersParaDadosDetalharUsuario(Users usuarioCadastrado) {
         DadosDetalhamentoUsers usuario = new DadosDetalhamentoUsers(usuarioCadastrado.getId(),usuarioCadastrado.getFirstName(), usuarioCadastrado.getLastName(),
                 usuarioCadastrado.getEmail(),usuarioCadastrado.getBirthday(),usuarioCadastrado.getLogin(), usuarioCadastrado.getPhone(),
                 usuarioCadastrado.getCars()

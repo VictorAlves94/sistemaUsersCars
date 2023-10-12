@@ -1,9 +1,9 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.controllers;
 
 
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosAtualizacaoUsuario;
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosCadasUsuario;
-import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.DadosListagemUsers;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosAtualizacaoUsuario;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosCadasUsuario;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosListagemUsers;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.service.UsuarioService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class UsersController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemUsers>> listar(@PageableDefault(size=10, sort={"nome"}) Pageable paginacao){
+    public ResponseEntity<Page<DadosListagemUsers>> listar(@PageableDefault(size=10, sort={"id"}) Pageable paginacao){
         var page = usuarioService.listarTodos(paginacao);
         return ResponseEntity.ok(page);
     }
