@@ -4,6 +4,7 @@ import com.sistemaUsersCars.api.com.sistemaUsersCars.api.repository.LoginReposit
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,7 +21,7 @@ public class LoginService implements UserDetailsService {
         return loginRepository.findByLogin(username);
     }
     @Bean
-    public AuthenticationManager authenticationManager (AuthenticationConfiguration configuration) throws Exception{
+    public  AuthenticationManager authenticationManager (AuthenticationConfiguration configuration) throws Exception{
         return configuration.getAuthenticationManager();
 
     }
