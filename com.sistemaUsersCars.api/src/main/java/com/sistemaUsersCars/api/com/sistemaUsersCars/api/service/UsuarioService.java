@@ -1,5 +1,6 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.service;
 
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.logindDto.LoginDto;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosAtualizacaoUsuario;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosCadasUsuario;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosDetalhamentoUsers;
@@ -17,9 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UsuarioService {
+public class UsuarioService extends Users {
     @Autowired
     UsersRepository usuarioRepository;
+
+    @Autowired
+    LoginService loginService;
 
     public void desativarUsuario(Long id){
         var usuario = buscarUsuarioDb(id);
@@ -42,8 +46,10 @@ public class UsuarioService {
                     usuario.getPhone(),
                     usuario.getCars());
 
+
             dadosList.add(dados);
         });
+
 
         return new PageImpl<>(dadosList, pagina.getPageable(), pagina.getTotalElements());
     }
@@ -68,10 +74,12 @@ public class UsuarioService {
 
         Users usuarioCadastro = converterCadastroEntidade(dadosCadastroUsuario);
         var usuarioCadastrado = usuarioRepository.save(usuarioCadastro);
+
         var usuarioDevolver = converterUsersParaDadosDetalharUsuario(usuarioCadastrado);
 
         return usuarioDevolver;
     }
+
 
     public DadosAtualizacaoUsuario atualizacaoUsuario(Long id, DadosAtualizacaoUsuario dadosAtualizacaoUsuario){
 

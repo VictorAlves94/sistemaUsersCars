@@ -4,6 +4,7 @@ import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.CarroDetal
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.DadosCarroAtualizar;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.DadosCarroCadastro;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.DadosListarCarro;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosDetalhamentoUsers;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.entity.Cars;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.repository.CarsRepository;
 import org.springframework.beans.BeanUtils;
@@ -100,7 +101,6 @@ public class CarsService {
         carro.setColor(dados.Color());
         return carro;
     }
-
 
 
 }

@@ -55,4 +55,5 @@ public record DadosDetalhamentoUsers(Long id,
     public List<Cars> cars() {
         return cars;
     }
+
 }

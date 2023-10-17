@@ -1,26 +1,33 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.controllers;
 
 
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.carroDto.DadosListarCarro;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosAtualizacaoUsuario;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosCadasUsuario;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosDetalhamentoUsers;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.usuarioDto.DadosListagemUsers;
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.service.CarsService;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.service.UsuarioService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
 public class UsersController {
 
+    @Autowired
+    CarsService carsService;
     @Autowired
     UsuarioService usuarioService;
 
@@ -46,6 +53,7 @@ public class UsersController {
         return ResponseEntity.ok(usuario);
 
     }
+
     @PutMapping
     @Transactional
     public ResponseEntity atualizar(Long id ,@RequestBody DadosAtualizacaoUsuario dados) {

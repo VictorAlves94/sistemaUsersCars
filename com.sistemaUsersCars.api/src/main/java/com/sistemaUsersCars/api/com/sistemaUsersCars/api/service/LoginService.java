@@ -1,5 +1,6 @@
 package com.sistemaUsersCars.api.com.sistemaUsersCars.api.service;
 
+import com.sistemaUsersCars.api.com.sistemaUsersCars.api.dto.logindDto.LoginDto;
 import com.sistemaUsersCars.api.com.sistemaUsersCars.api.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 public class LoginService implements UserDetailsService {
     @Autowired
     LoginRepository loginRepository;
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return loginRepository.findByLogin(username);
@@ -31,7 +34,11 @@ public class LoginService implements UserDetailsService {
     }
 
     public UserDetails findByLogin(String login) {
-        var buscarDb = loginRepository.findByLogin(login);
+       var buscarDb = loginRepository.findByLogin(login);
         return buscarDb;
     }
+
+
+
 }
+
